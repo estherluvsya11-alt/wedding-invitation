@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>모바일 청첩장</title>
+
+    <!-- Open Graph for SNS share previews -->
+    <meta property="og:title" content="저희 결혼합니다! 모바일 청첩장">
+    <meta property="og:description" content="예쁘게 살겠습니다. 축복해 주세요.">
+    <meta property="og:image" content="https://via.placeholder.com/800x400/ffebee/d32f2f?text=Wedding+Cover">
+
+    <!-- 네이버 지도 API -->
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=0wtzzyyzog"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Pretendard:wght@300;400;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- 메인 커버 섹션 -->
+        <section id="cover" class="section-cover">
+            <div class="cover-image">
+                <img src="images/cover.png" alt="Wedding Cover">
+            </div>
+            <div class="cover-content">
+                <p class="wedding-date-top">2026. 6. 6. SAT</p>
+                <h1 class="names">
+                    <span>김지헌</span>
+                    <span class="divider">|</span>
+                    <span>김서영</span>
+                </h1>
+                <p class="wedding-info-bottom">
+                    2026년 6월 6일 토요일 오후 5시<br>
+                    한국기독교연합회관 연합웨딩홀 아가페홀
+                </p>
+            </div>
+        </section>
+
+        <!-- 인사말 섹션 -->
+        <section id="greeting" class="section-padding text-center fade-in">
+            <h2 class="section-title serif">Invitation</h2>
+            <p class="section-subtitle">소중한 분들을 초대합니다</p>
+
+            <div class="greeting-message my-4">
+                서로가 마주보며 다져온 사랑을<br>
+                이제 함께 한 곳을 바라보며<br>
+                걸어갈 수 있는 큰 사랑으로 키우고자 합니다.<br>
+                <br>
+                저희 두 사람이 사랑의 이름으로 지켜나갈 수 있게<br>
+                앞날을 축복해 주시면 감사하겠습니다.
+            </div>
+
+            <div class="parents-info mt-2">
+                <div class="parent-row">
+                    <span class="parent-name">김관범 · 김은경</span>
+                    <span class="relation text-muted">의 차남</span>
+                    <span class="child-name">김지헌</span>
+                </div>
+                <div class="parent-row">
+                    <span class="parent-name">김성희 · 김혜선</span>
+                    <span class="relation text-muted">의 장녀</span>
+                    <span class="child-name">김서영</span>
+                </div>
+            </div>
+
+            <div class="contact-buttons my-4">
+                <a href="tel:010-0000-0000" class="btn btn-outline">신랑에게 연락하기</a>
+                <a href="tel:010-0000-0000" class="btn btn-outline">신부에게 연락하기</a>
+            </div>
+        </section>
+
+        <!-- 캘린더 섹션 -->
+        <section id="calendar" class="section-padding background-surface text-center fade-in">
+            <h2 class="section-title serif">6. 6</h2>
+            <p class="section-subtitle">2026년 6월 6일 토요일 오후 5시</p>
+
+            <div class="calendar-wrapper my-4">
+                <table class="wedding-calendar">
+                    <thead>
+                        <tr>
+                            <th class="sun">일</th>
+                            <th>월</th>
+                            <th>화</th>
+                            <th>수</th>
+                            <th>목</th>
+                            <th>금</th>
+                            <th class="sat">토</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
+                            <td>5</td>
+                            <td class="wedding-day">
+                                <div class="heart-mark">6</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="sun">7</td>
+                            <td>8</td>
+                            <td>9</td>
+                            <td>10</td>
+                            <td>11</td>
+                            <td>12</td>
+                            <td class="sat">13</td>
+                        </tr>
+                        <tr>
+                            <td class="sun">14</td>
+                            <td>15</td>
+                            <td>16</td>
+                            <td>17</td>
+                            <td>18</td>
+                            <td>19</td>
+                            <td class="sat">20</td>
+                        </tr>
+                        <tr>
+                            <td class="sun">21</td>
+                            <td>22</td>
+                            <td>23</td>
+                            <td>24</td>
+                            <td>25</td>
+                            <td>26</td>
+                            <td class="sat">27</td>
+                        </tr>
+                        <tr>
+                            <td class="sun">28</td>
+                            <td>29</td>
+                            <td>30</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="countdown mt-2">
+                김지헌 ❤️ 김서영의 결혼식이 <br>
+                <span class="d-day font-serif">D-<span id="dday-count">0</span></span> 일 남았습니다.
+            </div>
+        </section>
+
+        <!-- 부모님 섹션 (사진+손글씨) -->
+        <section id="parents" class="section-padding text-center fade-in">
+            <p class="section-subtitle">신랑신부 부모님의 편지</p>
+            <div class="parents-letter mt-4">
+                <div class="parents-photo">
+                    <img src="images/parents.png" alt="부모님 사진"
+                        style="width:100%; max-width: 300px; border-radius: 8px;">
+                </div>
+                <div class="handwriting-letter my-4">
+                    <img src="images/handwriting.png" alt="손글씨 편지"
+                        style="width:100%; max-width: 300px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                </div>
+            </div>
+        </section>
+
+        <!-- 러브스토리 / 러브레터 섹션 -->
+        <section id="love-letter" class="section-padding background-surface text-center fade-in">
+            <p class="section-subtitle">신랑신부의 편지</p>
+            <div class="love-letter-content mt-4" style="line-height: 2.2; font-size: 0.95rem; color: #444;">
+                <p>2020년 봄, 벚꽃이 흩날리던 날 처음 만났습니다.<br>
+                    함께 웃고 울며 보낸 6년의 시간 동안<br>
+                    서로는 가장 친한 친구이자 사랑하는 연인이 되었습니다.<br><br>
+                    앞으로도 지금처럼, 아니 지금보다 더<br>
+                    서로를 아끼고 존중하며 예쁘게 살겠습니다.</p>
+            </div>
+        </section>
+
+        <!-- 갤러리 섹션 -->
+        <section id="gallery" class="section-padding text-center fade-in">
+            <h2 class="section-title serif">Gallery</h2>
+
+            <div class="gallery-grid mt-4">
+                <!-- 9개의 인스타그램 스타일 그리드 예시 (최대 30장까지 추가 가능) -->
+                <div class="gallery-item" onclick="openLightbox(this)"><img
+                        src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400&auto=format&fit=crop"
+                        alt="Gallery 1"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img
+                        src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?q=80&w=400&auto=format&fit=crop"
+                        alt="Gallery 2"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img
+                        src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?q=80&w=400&auto=format&fit=crop"
+                        alt="Gallery 3"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img
+                        src="https://images.unsplash.com/photo-1543165365-07232ed12fad?q=80&w=400&auto=format&fit=crop"
+                        alt="Gallery 4"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img
+                        src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?q=80&w=400&auto=format&fit=crop"
+                        alt="Gallery 5"></div>
+                <div class="gallery-item" onclick="openLightbox(this)"><img
+                        src="https://images.unsplash.com/photo-1505902722415-4a5ee90a7b45?q=80&w=400&auto=format&fit=crop"
+                        alt="Gallery 6"></div>
+                <!-- 사용자 사진을 계속 추가할 수 있습니다 -->
+            </div>
+
+            <p class="text-muted mt-2" style="font-size: 0.85rem;">사진을 누르시면 크게 보실 수 있습니다.</p>
+        </section>
+
+        <!-- 하객 사진 업로드 섹션 -->
+        <section id="guest-upload" class="section-padding background-surface text-center fade-in">
+            <h2 class="section-title serif" style="font-size: 1.3rem;">Snapshots</h2>
+            <p class="section-subtitle">우리의 예식 순간을 공유해주세요</p>
+            <div class="upload-info my-4">
+                <p style="font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.8;">
+                    예식 당일, 하객 여러분께서 직접 찍어주신<br>
+                    예쁜 사진과 영상을 아래 링크에 올려주세요.<br>
+                    <span class="text-muted" style="font-size: 0.85rem;">(로그인 없이 누구나 바로 업로드 가능합니다!)</span>
+                </p>
+                <a href="#" class="btn btn-outline"
+                    style="background-color: var(--primary-color); color: white; border: none; width: 80%; padding: 0.8rem;">
+                    예식 사진/영상 올려주기
+                </a>
+            </div>
+        </section>
+
+        <!-- 오시는길 섹션 -->
+        <section id="location" class="section-padding text-center fade-in">
+            <h2 class="section-title serif">Location</h2>
+            <p class="section-subtitle">오시는 길</p>
+
+            <div class="venue-info my-4">
+                <strong>한국기독교연합회관 연합웨딩홀 아가페홀</strong><br>
+                <span class="text-muted" style="font-size: 0.95rem;">서울 종로구 김상옥로 30 한국기독교연합회관 3층</span>
+            </div>
+
+            <!-- 지도 영역 -->
+            <div class="map-container">
+                <!-- 네이버 지도 연동 공간 -->
+                <div id="map" style="width:100%; height:250px; border-radius: 8px; background-color: #f0f0f0;">
+                    <p style="text-align:center; padding-top:110px; color:#999; font-size:0.85rem;">
+                        지도를 불러오는 중입니다...<br>
+                        (네이버 지도 API 키 설정 필요)
+                    </p>
+                </div>
+            </div>
+
+            <div class="map-buttons mt-2">
+                <a href="#" class="btn btn-outline" style="width: 100%;">네이버 지도로 보기</a>
+            </div>
+
+            <div class="transport-info mt-4 text-left">
+                <div class="transport-item">
+                    <h4>지하철 안내</h4>
+                    <p>1호선 종로5가역 2번 출구에서 도보 5분</p>
+                </div>
+                <div class="transport-item">
+                    <h4>주차 안내</h4>
+                    <p>건물 내 지하 2층~지하 4층 주차가능 <br>(하객 2시간 무료)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 방명록 섹션 -->
+        <section id="guestbook" class="section-padding background-surface text-center fade-in">
+            <h2 class="section-title serif">Guestbook</h2>
+            <p class="section-subtitle">축하의 한마디를 남겨주세요</p>
+
+            <div class="guestbook-form mt-4">
+                <div style="display: flex; gap: 10px; margin-bottom: 10px;">
+                    <input type="text" id="gb-name" placeholder="이름" class="gb-input" style="flex: 1;">
+                    <input type="password" id="gb-pwd" placeholder="비밀번호" class="gb-input" style="flex: 1;">
+                </div>
+                <textarea id="gb-message" placeholder="축하 메시지를 남겨주세요." class="gb-textarea"
+                    style="width: 100%; height: 80px; margin-bottom: 10px;"></textarea>
+                <button class="btn" onclick="addGuestbookEntry()"
+                    style="width: 100%; background-color: var(--primary-color); color: white; border: none; padding: 0.8rem;">등록하기</button>
+            </div>
+
+            <div class="guestbook-list mt-4" id="guestbook-list"
+                style="text-align: left; max-height: 400px; overflow-y: auto; padding-right: 5px;">
+                <!-- Javascript로 동적 추가 -->
+            </div>
+        </section>
+
+        <!-- 마음 전하실 곳 섹션 -->
+        <section id="account" class="section-padding text-center fade-in">
+            <h2 class="section-title serif">마음 전하실 곳</h2>
+            <p class="section-subtitle">참석이 어려우신 분들을 위해<br>계좌번호를 기재하였습니다.</p>
+
+            <div class="accordion-container my-4">
+                <!-- 신랑측 -->
+                <div class="accordion">
+                    <button class="accordion-header">신랑측 계좌번호 <span class="icon">▼</span></button>
+                    <div class="accordion-content">
+                        <div class="account-row">
+                            <div class="account-details">
+                                <span class="bank">국민은행</span>
+                                <span class="number" id="groom-acc">123456-78-901234</span><br>
+                                <span class="holder">예금주: 김관범</span>
+                            </div>
+                            <button class="btn-copy" onclick="copyText('groom-acc')">복사</button>
+                        </div>
+                        <div class="account-row">
+                            <div class="account-details">
+                                <span class="bank">우리은행</span>
+                                <span class="number" id="groom2-acc">1002-945-417801</span><br>
+                                <span class="holder">예금주: 김지헌</span>
+                            </div>
+                            <button class="btn-copy" onclick="copyText('groom2-acc')">복사</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 신부측 -->
+                <div class="accordion mt-2">
+                    <button class="accordion-header">신부측 계좌번호 <span class="icon">▼</span></button>
+                    <div class="accordion-content">
+                        <div class="account-row">
+                            <div class="account-details">
+                                <span class="bank">신한은행</span>
+                                <span class="number" id="bride-acc">1002-123-456789</span><br>
+                                <span class="holder">예금주: 김성희</span>
+                            </div>
+                            <button class="btn-copy" onclick="copyText('bride-acc')">복사</button>
+                        </div>
+                        <div class="account-row">
+                            <div class="account-details">
+                                <span class="bank">국민은행</span>
+                                <span class="number" id="bride2-acc">233002-04-206398</span><br>
+                                <span class="holder">예금주: 김서영</span>
+                            </div>
+                            <button class="btn-copy" onclick="copyText('bride2-acc')">복사</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center section-padding background-surface text-muted"
+            style="font-size: 0.8rem; padding-bottom: 5rem;">
+            <p>Made with ❤️ by Esther Wedding</p>
+        </footer>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <img id="lightbox-img" src="" alt="Full view">
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

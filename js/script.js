@@ -45,10 +45,21 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Lightbox functionality
+let currentImageIndex = 0;
+let galleryImages = [];
+
+function getGalleryImages() {
+    return Array.from(document.querySelectorAll('.gallery-item img')).map(img => img.src);
+}
+
 function openLightbox(element) {
+    galleryImages = getGalleryImages();
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const imageSrc = element.querySelector('img').src;
+
+    currentImageIndex = galleryImages.indexOf(imageSrc);
+    if (currentImageIndex === -1) currentImageIndex = 0; // fallback
 
     lightbox.style.display = 'block';
     lightboxImg.src = imageSrc;
@@ -62,9 +73,27 @@ function closeLightbox() {
     document.body.style.overflow = 'auto';
 }
 
+function prevImage() {
+    if (galleryImages.length === 0) galleryImages = getGalleryImages();
+    if (galleryImages.length === 0) return;
+
+    currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+    document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
+}
+
+function nextImage() {
+    if (galleryImages.length === 0) galleryImages = getGalleryImages();
+    if (galleryImages.length === 0) return;
+
+    currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+    document.getElementById('lightbox-img').src = galleryImages[currentImageIndex];
+}
+
 // Close lightbox on clicking outside image
 document.getElementById('lightbox')?.addEventListener('click', function (e) {
-    if (e.target !== document.getElementById('lightbox-img')) {
+    if (e.target !== document.getElementById('lightbox-img') &&
+        !e.target.classList.contains('lightbox-prev') &&
+        !e.target.classList.contains('lightbox-next')) {
         closeLightbox();
     }
 });

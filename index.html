@@ -17,7 +17,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600&family=Pretendard:wght@300;400;600&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Noto+Serif+KR:wght@300;400;600&family=Pretendard:wght@300;400;600&display=swap"
         rel="stylesheet">
 
     <!-- Styles -->
@@ -28,26 +28,30 @@
     <div class="app-container">
         <!-- 메인 커버 섹션 -->
         <section id="cover" class="section-cover">
-            <div class="cover-image">
-                <img src="images/cover.png" alt="Wedding Cover">
+            <div class="cover-top text-center" style="margin-top: 2rem;">
+                <p class="font-script"
+                    style="color: var(--accent-color); font-size: 3.5rem; display: inline-block; margin: 0;">
+                    our wedding day</p>
+                <h1 class="serif"
+                    style="font-size: 3.5rem; color: var(--primary-color); letter-spacing: 2px; margin-top: 1rem; font-style: italic;">
+                    06.06</h1>
             </div>
-            <div class="cover-content">
-                <p class="wedding-date-top">2026. 6. 6. SAT</p>
-                <h1 class="names">
-                    <span>김지헌</span>
-                    <span class="divider">|</span>
-                    <span>김서영</span>
-                </h1>
-                <p class="wedding-info-bottom">
-                    2026년 6월 6일 토요일 오후 5시<br>
-                    한국기독교연합회관 연합웨딩홀 아가페홀
+            <div class="cover-image-container"
+                style="margin: 2rem auto; width: 90%; max-width: 360px; aspect-ratio: 1/1.35; border-radius: 200px 200px 0 0; border: 3px solid var(--primary-color); border-bottom: 3px solid var(--primary-color); overflow: hidden; position: relative; background: #fff;">
+                <img src="images/cover.jpg" alt="Wedding Cover"
+                    style="width: 100%; height: 100%; object-fit: cover; opacity: 0.9;">
+            </div>
+            <div class="cover-bottom text-center mb-4">
+                <p class="serif" style="font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--primary-color);">김지헌
+                    <span style="font-size:0.9rem; color: var(--text-muted); padding: 0 5px;">그리고</span> 김서영
                 </p>
+                <p class="serif" style="font-size: 0.95rem; color: var(--primary-color);">2026년 06월 06일 토요일 오후 5시</p>
             </div>
         </section>
 
         <!-- 인사말 섹션 -->
         <section id="greeting" class="section-padding text-center fade-in">
-            <h2 class="section-title serif">Invitation</h2>
+            <h2 class="section-title font-script">Invitation</h2>
             <p class="section-subtitle">소중한 분들을 초대합니다</p>
 
             <div class="greeting-message my-4">
@@ -63,18 +67,18 @@
                 <div class="parent-row">
                     <span class="parent-name">김관범 · 김은경</span>
                     <span class="relation text-muted">의 차남</span>
-                    <span class="child-name">김지헌</span>
+                    <span class="child-name">지헌</span>
                 </div>
                 <div class="parent-row">
                     <span class="parent-name">김성희 · 김혜선</span>
                     <span class="relation text-muted">의 장녀</span>
-                    <span class="child-name">김서영</span>
+                    <span class="child-name">서영</span>
                 </div>
             </div>
 
             <div class="contact-buttons my-4">
-                <a href="tel:010-0000-0000" class="btn btn-outline">신랑에게 연락하기</a>
-                <a href="tel:010-0000-0000" class="btn btn-outline">신부에게 연락하기</a>
+                <a href="tel:010-6278-0781" class="btn btn-outline">신랑에게 연락하기</a>
+                <a href="tel:010-4613-9917" class="btn btn-outline">신부에게 연락하기</a>
             </div>
         </section>
 
@@ -105,7 +109,7 @@
                             <td>4</td>
                             <td>5</td>
                             <td class="wedding-day">
-                                <div class="heart-mark">6</div>
+                                <div class="circle-mark">6</div>
                             </td>
                         </tr>
                         <tr>
@@ -183,7 +187,7 @@
 
         <!-- 갤러리 섹션 -->
         <section id="gallery" class="section-padding text-center fade-in">
-            <h2 class="section-title serif">Gallery</h2>
+            <h2 class="section-title font-script">Gallery</h2>
 
             <div class="gallery-grid mt-4">
                 <!-- 9개의 인스타그램 스타일 그리드 예시 (최대 30장까지 추가 가능) -->
@@ -213,7 +217,7 @@
 
         <!-- 하객 사진 업로드 섹션 -->
         <section id="guest-upload" class="section-padding background-surface text-center fade-in">
-            <h2 class="section-title serif" style="font-size: 1.3rem;">Snapshots</h2>
+            <h2 class="section-title font-script">Snapshots</h2>
             <p class="section-subtitle">우리의 예식 순간을 공유해주세요</p>
             <div class="upload-info my-4">
                 <p style="font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.8;">
@@ -230,7 +234,7 @@
 
         <!-- 오시는길 섹션 -->
         <section id="location" class="section-padding text-center fade-in">
-            <h2 class="section-title serif">Location</h2>
+            <h2 class="section-title font-script">Location</h2>
             <p class="section-subtitle">오시는 길</p>
 
             <div class="venue-info my-4">
@@ -239,18 +243,15 @@
             </div>
 
             <!-- 지도 영역 -->
-            <div class="map-container">
-                <!-- 네이버 지도 연동 공간 -->
-                <div id="map" style="width:100%; height:250px; border-radius: 8px; background-color: #f0f0f0;">
-                    <p style="text-align:center; padding-top:110px; color:#999; font-size:0.85rem;">
-                        지도를 불러오는 중입니다...<br>
-                        (네이버 지도 API 키 설정 필요)
-                    </p>
-                </div>
+            <div class="map-container" style="box-shadow: none;">
+                <img src="images/map.png" alt="오시는 길 약도"
+                    style="width: 100%; border-radius: 8px; border: 1px solid var(--border-color);">
             </div>
 
-            <div class="map-buttons mt-2">
-                <a href="#" class="btn btn-outline" style="width: 100%;">네이버 지도로 보기</a>
+            <div class="map-buttons mt-2" style="margin-top: 1rem;">
+                <a href="https://naver.me/FzSifb7D" target="_blank" class="btn btn-outline"
+                    style="width: 100%; background-color: var(--primary-color); color: white; border: none;">네이버 지도로
+                    보기</a>
             </div>
 
             <div class="transport-info mt-4 text-left">
@@ -267,7 +268,7 @@
 
         <!-- 방명록 섹션 -->
         <section id="guestbook" class="section-padding background-surface text-center fade-in">
-            <h2 class="section-title serif">Guestbook</h2>
+            <h2 class="section-title font-script">Guestbook</h2>
             <p class="section-subtitle">축하의 한마디를 남겨주세요</p>
 
             <div class="guestbook-form mt-4">
@@ -350,7 +351,9 @@
     <!-- Lightbox Modal -->
     <div id="lightbox" class="lightbox">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+        <span class="lightbox-prev" onclick="prevImage()">&#10094;</span>
         <img id="lightbox-img" src="" alt="Full view">
+        <span class="lightbox-next" onclick="nextImage()">&#10095;</span>
     </div>
 
     <!-- Scripts -->

@@ -98,6 +98,27 @@ document.getElementById('lightbox')?.addEventListener('click', function (e) {
     }
 });
 
+// Lightbox swipe navigation for mobile
+let touchstartX = 0;
+let touchendX = 0;
+
+function handleGesture() {
+    if (touchendX < touchstartX - 40) nextImage();
+    if (touchendX > touchstartX + 40) prevImage();
+}
+
+const lightboxEl = document.getElementById('lightbox');
+if (lightboxEl) {
+    lightboxEl.addEventListener('touchstart', e => {
+        touchstartX = e.changedTouches[0].screenX;
+    });
+
+    lightboxEl.addEventListener('touchend', e => {
+        touchendX = e.changedTouches[0].screenX;
+        handleGesture();
+    });
+}
+
 // Copy to clipboard
 function copyText(elementId) {
     const textToCopy = document.getElementById(elementId).innerText;

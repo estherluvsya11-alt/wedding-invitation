@@ -466,6 +466,106 @@ h3,
     background: #bfa895;
 }
 
+/* Scrapbook Parents' Letter Section */
+.scrapbook-container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 440px;
+    padding: 30px 20px;
+    background: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.scrapbook-title {
+    font-size: 1rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.scrapbook-title strong {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.scrapbook-polaroid {
+    background: white;
+    padding: 10px 10px 45px 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transform: rotate(-2deg);
+    margin: 0 auto 30px;
+    position: relative;
+    width: 85%;
+}
+
+.tape {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%) rotate(2deg);
+    width: 90px;
+    height: 28px;
+    background: rgba(255, 235, 205, 0.7);
+    /* Beige tape */
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+}
+
+.polaroid-img {
+    width: 100%;
+    aspect-ratio: 1 / 1.1;
+    object-fit: cover;
+    background: var(--background-color);
+}
+
+.scrapbook-paper {
+    position: relative;
+    background: linear-gradient(transparent, transparent 31px, rgba(160, 190, 220, 0.3) 31px, rgba(160, 190, 220, 0.3) 32px);
+    background-size: 100% 32px;
+    padding: 20px 15px 40px;
+    margin-top: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.04);
+    transform: rotate(1deg);
+    min-height: 200px;
+    overflow: hidden;
+}
+
+.handwritten-img {
+    width: 100%;
+    height: auto;
+    mix-blend-mode: multiply;
+    filter: contrast(2.5) brightness(1.3) grayscale(100%);
+    opacity: 0.95;
+    pointer-events: none;
+    transform: translateY(-10px);
+}
+
+.sticker-photo {
+    position: absolute;
+    bottom: -30px;
+    right: 5px;
+    width: 150px;
+    height: 150px;
+    /* Organic sticker shape */
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    transform: rotate(3deg);
+    z-index: 3;
+    background: white;
+}
+
+.sticker-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 5%;
+}
+
 /* Guestbook */
 .gb-input,
 .gb-textarea {

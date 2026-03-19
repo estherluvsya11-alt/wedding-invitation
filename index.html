@@ -161,17 +161,44 @@
             </div>
         </section>
 
-        <!-- 부모님 섹션 (사진+손글씨) -->
-        <section id="parents" class="section-padding text-center fade-in">
-            <p class="section-subtitle">신랑신부 부모님의 편지</p>
-            <div class="parents-letter mt-4">
-                <div class="parents-photo">
-                    <img src="images/parents.png" alt="부모님 사진"
-                        style="width:100%; max-width: 300px; border-radius: 8px;">
+        <!-- 부모님 마음 (스크랩북) 섹션 -->
+        <section id="parents-message" class="section-padding text-center fade-in"
+            style="background-color: var(--secondary-color);">
+            <h2 class="section-title font-script" style="font-size: 3rem;">To My Child</h2>
+            <p class="section-subtitle">사랑하는 자녀에게 전하는 마음</p>
+
+            <!-- 신랑측 (Placeholder) -->
+            <div class="scrapbook-container my-4" style="margin-top: 2.5rem;">
+                <p class="serif scrapbook-title">
+                    김관범 & 김은경의 아들<br>
+                    <strong>신랑 지헌</strong>
+                </p>
+                <div class="polaroid-frame scrapbook-polaroid">
+                    <div class="tape tape-top"></div>
+                    <img src="images/placeholder.jpg" alt="Groom Family Photo" class="polaroid-img">
                 </div>
-                <div class="handwriting-letter my-4">
-                    <img src="images/handwriting.png" alt="손글씨 편지"
-                        style="width:100%; max-width: 300px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <div class="lined-paper scrapbook-paper">
+                    <p class="text-muted" style="padding: 40px; font-size: 0.9rem;">(신랑측 부모님의 손글씨 이미지가 들어갈 자리입니다)</p>
+                </div>
+            </div>
+
+            <!-- 신부측 -->
+            <div class="scrapbook-container my-4" style="margin-top: 4rem;">
+                <p class="serif scrapbook-title">
+                    김성희 & 김혜선의 딸<br>
+                    <strong>신부 서영</strong>
+                </p>
+                <div class="polaroid-frame scrapbook-polaroid" style="transform: rotate(2deg);">
+                    <div class="tape tape-top"
+                        style="transform: translateX(-50%) rotate(-2deg); background: rgba(230, 200, 200, 0.6);"></div>
+                    <img src="images/bride_family.jpg" alt="Bride Family Photo" class="polaroid-img">
+                </div>
+                <div class="lined-paper scrapbook-paper" style="transform: rotate(-1deg);">
+                    <img src="images/bride_letter_raw.jpg" alt="Bride Handwritten Letter" class="handwritten-img">
+                </div>
+                <!-- 아기 사진 누끼 모양 스티커 -->
+                <div class="sticker-photo sticker-bride">
+                    <img src="images/bride_baby.jpg" alt="Bride Baby Photo" class="sticker-img">
                 </div>
             </div>
         </section>
@@ -355,7 +382,7 @@
     <div id="lightbox" class="lightbox">
         <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
         <span class="lightbox-prev" onclick="prevImage()">&#10094;</span>
-        <img id="lightbox-img" src="" alt="Full view">
+        <img id="lightbox-img" src="" alt="Full view" draggable="false" style="touch-action: pan-y;">
         <span class="lightbox-next" onclick="nextImage()">&#10095;</span>
     </div>
 

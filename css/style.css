@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     /* Color Palette - Elegant Vintage Navy & Cream */
     --primary-color: #2B2D42;
@@ -14,7 +21,7 @@
 
     /* Typography */
     --font-serif: 'Noto Serif KR', serif;
-    --font-sans: 'Pretendard', sans-serif;
+    --font-sans: 'Gowun Dodum', sans-serif;
     --font-script: 'Great Vibes', cursive;
 }
 
@@ -56,6 +63,10 @@ h3,
 
 .font-script {
     font-family: var(--font-script);
+}
+
+.font-number {
+    font-family: 'GmarketSansMedium', sans-serif;
 }
 
 .text-center {
@@ -212,6 +223,7 @@ h3,
     max-width: 300px;
     border-collapse: collapse;
     font-size: 0.95rem;
+    table-layout: fixed;
 }
 
 .wedding-calendar th {
@@ -239,8 +251,8 @@ h3,
     width: 32px;
     height: 32px;
     margin: 0 auto;
-    color: var(--primary-color);
-    border: 2.5px solid var(--accent-color);
+    color: #ffffff;
+    background-color: var(--accent-color);
     border-radius: 50%;
     position: relative;
     font-weight: 600;
@@ -613,4 +625,182 @@ h3,
     font-size: 0.9rem;
     color: #444;
     white-space: pre-wrap;
+}
+
+/* RSVP Modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s;
+}
+
+.modal-content {
+    background-color: white;
+    width: 90%;
+    max-width: 320px;
+    border-radius: 12px;
+    padding: 30px 20px 20px;
+    position: relative;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: #999;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    color: var(--text-main);
+    margin-bottom: 1.2rem;
+}
+
+.modal-desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 1.2rem;
+}
+
+.modal-divider {
+    border: 0;
+    border-top: 1px dashed var(--border-color);
+    margin: 1.2rem 0;
+}
+
+.modal-info {
+    text-align: left;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    color: #555;
+}
+
+.btn-rsvp {
+    display: block;
+    width: 100%;
+    background-color: #5b6255;
+    color: white;
+    padding: 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-footer {
+    font-size: 0.85rem;
+    color: #b0b0b0;
+    text-align: center;
+}
+
+.modal-footer input {
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+/* RSVP Form UI */
+.rsvp-form-content {
+    animation: fadeIn 0.3s;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.6rem;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.form-required {
+    color: #cc4444;
+}
+
+.radio-group {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.radio-group input[type="radio"] {
+    display: none;
+}
+
+.radio-btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    background-color: white;
+    color: #999;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-right: 1px solid #e0e0e0;
+    margin-bottom: 0 !important;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.radio-btn:last-child {
+    border-right: none;
+}
+
+.radio-group input[type="radio"]:checked + .radio-btn {
+    background-color: var(--surface);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #5b6255;
+}
+
+.privacy-group {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.privacy-label {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0 !important;
+}
+
+.privacy-label input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin: 0;
 }

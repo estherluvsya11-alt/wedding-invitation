@@ -283,3 +283,105 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }, 500);
 });
+
+// RSVP Modal Logic
+function getCookie(name) {
+    let matches = document.cookie.match(new RegExp(
+        "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    ));
+    return matches ? decodeURIComponent(matches[1]) : undefined;
+}
+
+function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+        let date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const rsvpModal = document.getElementById('rsvp-modal');
+    if (rsvpModal) {
+        // Check cookie
+        if (!getCookie('hideRsvpModal')) {
+            // Show after 2 seconds
+            setTimeout(() => {
+                rsvpModal.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling under modal
+            }, 2000);
+        }
+    }
+});
+
+function closeRsvpModal() {
+    const rsvpModal = document.getElementById('rsvp-modal');
+    const hideTodayCheckbox = document.getElementById('hide-today');
+    
+    if (hideTodayCheckbox && hideTodayCheckbox.checked) {
+        setCookie('hideRsvpModal', 'true', 1); // Hide for 1 day
+    }
+    
+    rsvpModal.style.display = 'none';
+    document.body.style.overflow = 'auto'; // restore scroll
+    
+    // Reset view
+    setTimeout(() => {
+        document.getElementById('rsvp-intro').style.display = 'block';
+        document.getElementById('rsvp-form-container').style.display = 'none';
+        document.getElementById('rsvp-form').reset();
+    }, 300);
+}
+
+function openRsvpForm() {
+    document.getElementById('rsvp-intro').style.display = 'none';
+    document.getElementById('rsvp-form-container').style.display = 'block';
+}
+
+function submitRsvp(event) {
+    event.preventDefault();
+    
+    const submitBtn = document.querySelector('#rsvp-form button[type="submit"]');
+    const originalText = submitBtn.innerText;
+    submitBtn.innerText = "전달 중...";
+    submitBtn.disabled = true;
+
+    // Gather form data and map to Korean words
+    const sideRaw = document.querySelector('input[name="side"]:checked')?.value;
+    const side = sideRaw === 'groom' ? '신랑 측' : '신부 측';
+    
+    const attendRaw = document.querySelector('input[name="attend"]:checked')?.value;
+    const attend = attendRaw === 'yes' ? '참석' : '불참석';
+    
+    const mealRaw = document.querySelector('input[name="meal"]:checked')?.value;
+    let meal = '미정';
+    if(mealRaw === 'yes') meal = '식사함 (O)';
+    if(mealRaw === 'no') meal = '식사안함 (X)';
+    
+    const name = document.getElementById('rsvp-name').value;
+    const companion = document.getElementById('rsvp-companion').value || '(없음)';
+    const message = document.getElementById('rsvp-message').value || '(없음)';
+    
+    const templateParams = {
+        side: side,
+        attend: attend,
+        meal: meal,
+        name: name,
+        companion: companion,
+        message: message
+    };
+    
+    emailjs.send("service_lrci34i", "template_30zixe3", templateParams)
+        .then(function() {
+            alert('참석 정보가 성공적으로 전달되었습니다.\n감사합니다!');
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+            closeRsvpModal();
+        }, function(error) {
+            alert('전달에 실패했습니다. 다시 시도해주세요.\n오류 코드: ' + JSON.stringify(error));
+            submitBtn.innerText = originalText;
+            submitBtn.disabled = false;
+        });
+}

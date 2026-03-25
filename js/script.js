@@ -162,30 +162,54 @@ function shareKakao() {
     });
 }
 
-// Guestbook Logic using LocalStorage
-const GUESTBOOK_KEY = 'wedding_guestbook_entries';
+// Firebase Configuration & Guestbook Logic
+const firebaseConfig = {
+    apiKey: "AIzaSyBn8juiQvoJLEmn3t89EQu6Cadz7PTfy1M",
+    authDomain: "wedding-guestbook-af093.firebaseapp.com",
+    projectId: "wedding-guestbook-af093",
+    storageBucket: "wedding-guestbook-af093.firebasestorage.app",
+    messagingSenderId: "1033536610225",
+    appId: "1:1033536610225:web:a83990ccad989a39262790",
+    databaseURL: "https://wedding-guestbook-af093-default-rtdb.firebaseio.com" // Default US central database URL
+};
+
+if (!window.firebase) {
+    console.error("Firebase SDK not loaded!");
+} else if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+
+const db = firebase.database();
+const guestbookRef = db.ref('guestbook');
 
 function loadGuestbook() {
     const listContainer = document.getElementById('guestbook-list');
     if (!listContainer) return;
 
-    const entries = JSON.parse(localStorage.getItem(GUESTBOOK_KEY)) || [];
-    listContainer.innerHTML = '';
+    // Realtime connection to Firebase
+    guestbookRef.on('value', (snapshot) => {
+        listContainer.innerHTML = '';
+        const data = snapshot.val();
 
-    if (entries.length === 0) {
-        listContainer.innerHTML = '<p class="text-muted text-center" style="font-size: 0.85rem; padding: 20px;">첫 번째 축하 메시지를 남겨주세요!</p>';
-        return;
-    }
+        if (!data) {
+            listContainer.innerHTML = '<p class="text-muted text-center" style="font-size: 0.85rem; padding: 20px;">첫 번째 축하 메시지를 남겨주세요!</p>';
+            return;
+        }
 
-    entries.reverse().forEach(entry => {
-        const item = document.createElement('div');
-        item.className = 'guestbook-item fade-in visible';
-        item.innerHTML = `
-            <div class="gb-name">${escapeHTML(entry.name)}</div>
-            <div class="gb-date">${entry.date}</div>
-            <div class="gb-msg">${escapeHTML(entry.message)}</div>
-        `;
-        listContainer.appendChild(item);
+        // Convert data nested object to array, and sort by timestamp
+        const entries = Object.values(data);
+        entries.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+
+        entries.forEach(entry => {
+            const item = document.createElement('div');
+            item.className = 'guestbook-item fade-in visible';
+            item.innerHTML = `
+                <div class="gb-name">${escapeHTML(entry.name || '')}</div>
+                <div class="gb-date">${entry.date || ''}</div>
+                <div class="gb-msg">${escapeHTML(entry.message || '')}</div>
+            `;
+            listContainer.appendChild(item);
+        });
     });
 }
 
@@ -205,22 +229,23 @@ function addGuestbookEntry() {
 
     const newEntry = {
         name: name,
-        password: pwd, // In a real app, this should be hashed. Here we store it plain for dummy purposes.
+        password: pwd, 
         message: msg,
-        date: new Date().toLocaleDateString('ko-KR')
+        date: new Date().toLocaleDateString('ko-KR'),
+        timestamp: firebase.database.ServerValue.TIMESTAMP
     };
 
-    const entries = JSON.parse(localStorage.getItem(GUESTBOOK_KEY)) || [];
-    entries.push(newEntry);
-    localStorage.setItem(GUESTBOOK_KEY, JSON.stringify(entries));
-
-    // Clear inputs
-    nameInput.value = '';
-    pwdInput.value = '';
-    msgInput.value = '';
-
-    alert('축하 메시지가 등록되었습니다.');
-    loadGuestbook();
+    // Push new entry to Firebase
+    guestbookRef.push(newEntry).then(() => {
+        // Clear inputs
+        nameInput.value = '';
+        pwdInput.value = '';
+        msgInput.value = '';
+        alert('축하 메시지가 등록되었습니다.');
+    }).catch(err => {
+        alert('메시지 등록에 실패했습니다. (데이터베이스 권한 설정을 확인해주세요!)');
+        console.error(err);
+    });
 }
 
 // Simple HTML escaper to prevent XSS in guestbook

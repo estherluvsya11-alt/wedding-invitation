@@ -542,7 +542,6 @@ h3,
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.04);
     transform: rotate(1deg);
     min-height: 200px;
-    overflow: hidden;
 }
 
 .handwritten-img {

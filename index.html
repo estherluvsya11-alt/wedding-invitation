@@ -61,7 +61,7 @@
                 같은 곳을 바라보며 지혜롭고 아름답게<br>
                 발맞춰 걸어가고자 합니다.<br>
                 <br>
-                저희가 부부로서 내딛는 첫걸음,<br>
+                부부로서 내딛는 첫걸음,<br>
                 그 귀한 예배의 자리에 오셔서<br>
                 따뜻한 사랑으로 함께 축복해 주시면 감사하겠습니다.
             </div>
@@ -165,18 +165,19 @@
         <section id="parents-message" class="section-padding text-center fade-in"
             style="background-color: var(--secondary-color);">
 
-            <!-- 신랑측 (Placeholder) -->
+            <!-- 신랑측 -->
             <div class="scrapbook-container my-4">
                 <p class="serif scrapbook-title">
                     김관범 & 김은경의 아들<br>
-                    <strong>신랑 지헌</strong>
+                    <strong>신랑 지헌에게</strong>
                 </p>
-                <div class="polaroid-frame scrapbook-polaroid">
+                <div class="lined-paper scrapbook-paper" style="transform: rotate(1deg);">
                     <div class="tape tape-top"></div>
-                    <img src="images/placeholder.jpg" alt="Groom Family Photo" class="polaroid-img">
+                    <img src="images/groom_letter_raw.jpg" alt="Groom Handwritten Letter" class="handwritten-img" style="clip-path: polygon(0 0, 100% 0, 100% 86%, 48% 86%, 48% 72%, 0 72%); filter: contrast(5) brightness(1.5) grayscale(100%); margin-bottom: -14%;">
                 </div>
-                <div class="lined-paper scrapbook-paper">
-                    <p class="text-muted" style="padding: 40px; font-size: 0.9rem;">(신랑측 부모님의 손글씨 이미지가 들어갈 자리입니다)</p>
+                <!-- 아기 사진 누끼 모양 스티커 -->
+                <div class="sticker-photo sticker-groom">
+                    <img src="images/groom_baby.jpg" alt="Groom Baby Photo" class="sticker-img" style="object-position: center; transform: scale(1.5);">
                 </div>
             </div>
 
@@ -184,15 +185,11 @@
             <div class="scrapbook-container my-4" style="margin-top: 4rem;">
                 <p class="serif scrapbook-title">
                     김성희 & 김혜선의 딸<br>
-                    <strong>신부 서영</strong>
+                    <strong>신부 서영에게</strong>
                 </p>
-                <div class="polaroid-frame scrapbook-polaroid" style="transform: rotate(2deg);">
-                    <div class="tape tape-top"
-                        style="transform: translateX(-50%) rotate(-2deg); background: rgba(230, 200, 200, 0.6);"></div>
-                    <img src="images/bride_family.jpg" alt="Bride Family Photo" class="polaroid-img">
-                </div>
                 <div class="lined-paper scrapbook-paper" style="transform: rotate(-1deg);">
-                    <img src="images/bride_letter_raw.jpg" alt="Bride Handwritten Letter" class="handwritten-img">
+                    <div class="tape tape-top" style="transform: translateX(-50%) rotate(-2deg); background: rgba(230, 200, 200, 0.6);"></div>
+                    <img src="images/bride_letter_raw.jpg" alt="Bride Handwritten Letter" class="handwritten-img" style="filter: contrast(5) brightness(1.2) grayscale(100%); clip-path: inset(0 6% 0 0);">
                 </div>
                 <!-- 아기 사진 누끼 모양 스티커 -->
                 <div class="sticker-photo sticker-bride">
@@ -492,6 +489,8 @@
             });
         })();
     </script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
     <script src="js/script.js"></script>
 </body>
 

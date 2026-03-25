@@ -121,12 +121,23 @@ if (lightboxEl) {
 
 // Copy to clipboard
 function copyText(elementId) {
-    const textToCopy = document.getElementById(elementId).innerText;
-    // Remove dashes for exact account number format
-    const cleanText = textToCopy.replace(/-/g, '');
+    const accNumberElement = document.getElementById(elementId);
+    if (!accNumberElement) return;
+    
+    // Get the previous sibling element which contains the bank name
+    const bankElement = accNumberElement.previousElementSibling;
+    const bankName = bankElement && bankElement.classList.contains('bank') 
+                        ? bankElement.innerText.trim() 
+                        : '';
+    
+    // Get the account number while keeping the dashes
+    const accNumber = accNumberElement.innerText.trim();
+    
+    // Format: "국민은행 123-456-789"
+    const textToCopy = bankName ? `${bankName} ${accNumber}` : accNumber;
 
-    navigator.clipboard.writeText(cleanText).then(() => {
-        alert('계좌번호가 복사되었습니다: ' + cleanText);
+    navigator.clipboard.writeText(textToCopy).then(() => {
+        alert('계좌번호가 복사되었습니다:\n' + textToCopy);
     }).catch(err => {
         alert('복사 실패! 다시 시도해주세요.');
     });

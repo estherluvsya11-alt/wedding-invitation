@@ -25,6 +25,12 @@
 </head>
 
 <body>
+    <!-- BGM Player -->
+    <audio id="bgm" loop>
+        <source src="audio/bgm.mp3" type="audio/mpeg">
+    </audio>
+    <div id="bgm-btn" class="bgm-btn" onclick="toggleBgm()">🔇</div>
+
     <div class="app-container">
         <!-- 메인 커버 섹션 -->
         <section id="cover" class="section-cover">
@@ -189,7 +195,7 @@
                 </p>
                 <div class="lined-paper scrapbook-paper" style="transform: rotate(-1deg);">
                     <div class="tape tape-top" style="transform: translateX(-50%) rotate(-2deg); background: rgba(230, 200, 200, 0.6);"></div>
-                    <img src="images/bride_letter_raw.jpg" alt="Bride Handwritten Letter" class="handwritten-img" style="filter: contrast(5) brightness(1.2) grayscale(100%); clip-path: inset(0 6% 0 0);">
+                    <img src="images/bride_letter_new.jpg" alt="Bride Handwritten Letter" class="handwritten-img">
                 </div>
                 <!-- 아기 사진 누끼 모양 스티커 -->
                 <div class="sticker-photo sticker-bride">

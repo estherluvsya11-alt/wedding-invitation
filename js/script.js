@@ -410,3 +410,76 @@ function submitRsvp(event) {
             submitBtn.disabled = false;
         });
 }
+
+// --- BGM and Sparkle Effect ---
+function createSparkles() {
+    const coverPhoto = document.querySelector('.cover-image-container');
+    if (!coverPhoto) return;
+    
+    for (let i = 0; i < 30; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.className = 'sparkle';
+        
+        let x, y;
+        let inFaceZone = true;
+        
+        // Keep generating coordinates to avoid the center area (faces)
+        while (inFaceZone) {
+            x = Math.random() * 100;
+            y = Math.random() * 100;
+            
+            // The faces occupy the upper middle of the portrait photo
+            // roughly x: 20% to 80%, y: 20% to 55%
+            if (x > 15 && x < 85 && y > 15 && y < 55) {
+                inFaceZone = true;
+            } else {
+                inFaceZone = false;
+            }
+        }
+        
+        sparkle.style.left = x + '%';
+        sparkle.style.top = y + '%';
+        sparkle.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+        sparkle.style.animationDelay = (Math.random() * 3) + 's';
+        coverPhoto.appendChild(sparkle);
+    }
+}
+
+function toggleBgm() {
+    const bgm = document.getElementById('bgm');
+    const btn = document.getElementById('bgm-btn');
+    if (!bgm || !btn) return;
+    
+    if (bgm.paused) {
+        bgm.play().then(() => {
+            btn.classList.add('playing');
+            btn.innerHTML = '🎵';
+        }).catch(e => console.log('Audio play failed:', e));
+    } else {
+        bgm.pause();
+        btn.classList.remove('playing');
+        btn.innerHTML = '🔇';
+        bgm.setAttribute('data-manual-pause', 'true');
+    }
+}
+
+function initBgmOnInteract() {
+    const bgm = document.getElementById('bgm');
+    if (bgm && bgm.paused && !bgm.hasAttribute('data-manual-pause')) {
+        bgm.play().then(() => {
+            const btn = document.getElementById('bgm-btn');
+            if (btn) {
+                btn.classList.add('playing');
+                btn.innerHTML = '🎵';
+            }
+        }).catch(err => console.log('BGM autoplay prevented until further interaction.'));
+    }
+    document.body.removeEventListener('click', initBgmOnInteract);
+    document.body.removeEventListener('touchstart', initBgmOnInteract);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    createSparkles();
+    document.body.addEventListener('click', initBgmOnInteract, { once: true });
+    document.body.addEventListener('touchstart', initBgmOnInteract, { once: true });
+});

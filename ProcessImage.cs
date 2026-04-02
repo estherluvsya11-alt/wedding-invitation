@@ -6,48 +6,64 @@ using System.IO;
 
 class Program {
     static void Main(string[] args) {
-        ProcessLetter("images/groom_letter_raw.jpg", "images/groom_letter_baked.jpg", 2.5f, 1.3f);
-        // The bride's letter was likely already processed a bit, but let's apply the CSS rules anyway for consistency
-        ProcessLetter("images/bride_letter_new.jpg", "images/bride_letter_baked.jpg", 2.5f, 1.3f);
+        ProcessLetter("images/groom_letter_raw.jpg", "images/groom_letter_baked.jpg", 2.5f, 1.3f, true);
+        ProcessLetter("images/bride_letter_new.jpg", "images/bride_letter_baked.jpg", 2.5f, 1.3f, false);
     }
 
-    static void ProcessLetter(string inPath, string outPath, float contrast, float brightness) {
+    static void ProcessLetter(string inPath, string outPath, float contrast, float brightness, bool isGroom) {
         if (!File.Exists(inPath)) {
             Console.WriteLine("File not found: " + inPath);
             return;
         }
         
-        using (Bitmap bmp = new Bitmap(inPath))
+        using (Bitmap rawBmp = new Bitmap(inPath))
         {
-            using (Bitmap resultBmp = new Bitmap(bmp.Width, bmp.Height))
+            // Create a copy to allow drawing, just in case the raw format is locked
+            using (Bitmap bmp = new Bitmap(rawBmp.Width, rawBmp.Height, PixelFormat.Format32bppArgb))
             {
-                using (Graphics g = Graphics.FromImage(resultBmp))
-                {
-                    // Create cream paper backdrop
-                    g.Clear(Color.FromArgb(252, 252, 250));
-
-                    // Draw blue lines
-                    float ratio = bmp.Width / 280.0f;
-                    float lineSpacing = 32.0f * ratio;
+                using (Graphics gSrc = Graphics.FromImage(bmp)) {
+                    gSrc.DrawImage(rawBmp, 0, 0, rawBmp.Width, rawBmp.Height);
                     
-                    using (Pen bluePen = new Pen(Color.FromArgb(50, 140, 170, 200), Math.Max(1.0f, ratio * 0.8f)))
-                    {
-                        for (float y = lineSpacing; y < bmp.Height; y += lineSpacing)
-                        {
-                            g.DrawLine(bluePen, 0, y, bmp.Width, y);
-                        }
+                    if (isGroom) {
+                        int w = bmp.Width;
+                        int h = bmp.Height;
+                        // Whitewash bottom left corner to erase shadows
+                        gSrc.FillRectangle(Brushes.White, 0, (int)(0.72f * h), (int)(0.48f * w) + 1, h - (int)(0.72f * h) + 1);
+                        // Whitewash bottom edge to erase shadows
+                        gSrc.FillRectangle(Brushes.White, 0, (int)(0.86f * h), w, h - (int)(0.86f * h) + 1);
                     }
                 }
 
-                MultiplyImage(bmp, resultBmp, contrast, brightness);
-                
-                ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
-                Encoder myEncoder = Encoder.Quality;
-                EncoderParameters myEncoderParameters = new EncoderParameters(1);
-                myEncoderParameters.Param[0] = new EncoderParameter(myEncoder, 92L);
+                using (Bitmap resultBmp = new Bitmap(bmp.Width, bmp.Height))
+                {
+                    using (Graphics g = Graphics.FromImage(resultBmp))
+                    {
+                        // Create cream paper backdrop
+                        g.Clear(Color.FromArgb(252, 252, 250));
 
-                resultBmp.Save(outPath, jpgEncoder, myEncoderParameters);
-                Console.WriteLine("Baked " + outPath);
+                        // Draw blue lines
+                        float ratio = bmp.Width / 280.0f;
+                        float lineSpacing = 32.0f * ratio;
+                        
+                        using (Pen bluePen = new Pen(Color.FromArgb(50, 140, 170, 200), Math.Max(1.0f, ratio * 0.8f)))
+                        {
+                            for (float y = lineSpacing; y < bmp.Height; y += lineSpacing)
+                            {
+                                    g.DrawLine(bluePen, 0, y, bmp.Width, y);
+                            }
+                        }
+                    }
+
+                    MultiplyImage(bmp, resultBmp, contrast, brightness);
+                    
+                    ImageCodecInfo jpgEncoder = GetEncoder(ImageFormat.Jpeg);
+                    Encoder myEncoder = Encoder.Quality;
+                    EncoderParameters myEncoderParameters = new EncoderParameters(1);
+                    myEncoderParameters.Param[0] = new EncoderParameter(myEncoder, 92L);
+
+                    resultBmp.Save(outPath, jpgEncoder, myEncoderParameters);
+                    Console.WriteLine("Baked " + outPath);
+                }
             }
         }
     }

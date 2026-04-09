@@ -6,8 +6,7 @@ using System.IO;
 
 class Program {
     static void Main(string[] args) {
-        ProcessLetter("images/groom_letter_raw.jpg", "images/groom_letter_baked.jpg", 2.5f, 1.3f, true);
-        ProcessLetter("images/bride_letter_new.jpg", "images/bride_letter_baked.jpg", 2.5f, 1.3f, false);
+        ProcessLetter("images/love_letter.jpg", "images/love_letter_baked.jpg", 4.0f, 1.1f, false);
     }
 
     static void ProcessLetter(string inPath, string outPath, float contrast, float brightness, bool isGroom) {
@@ -22,7 +21,14 @@ class Program {
             using (Bitmap bmp = new Bitmap(rawBmp.Width, rawBmp.Height, PixelFormat.Format32bppArgb))
             {
                 using (Graphics gSrc = Graphics.FromImage(bmp)) {
-                    gSrc.DrawImage(rawBmp, 0, 0, rawBmp.Width, rawBmp.Height);
+                    if (inPath.Contains("love_letter")) {
+                        float zoom = 1.25f;
+                        float dx = -(zoom - 1.0f) * rawBmp.Width / 2f;
+                        float dy = -(zoom - 1.0f) * rawBmp.Height / 2f + (rawBmp.Height * 0.08f);
+                        gSrc.DrawImage(rawBmp, dx, dy, rawBmp.Width * zoom, rawBmp.Height * zoom);
+                    } else {
+                        gSrc.DrawImage(rawBmp, 0, 0, rawBmp.Width, rawBmp.Height);
+                    }
                     
                     if (isGroom) {
                         int w = bmp.Width;

@@ -31,6 +31,13 @@
     box-sizing: border-box;
 }
 
+html, body {
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
 body {
     background-color: var(--secondary-color);
     /* To make the mobile container stand out on desktop */
@@ -168,21 +175,24 @@ h3,
 }
 
 .parent-name {
-    width: 120px;
+    width: 140px;
     text-align: right;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .relation {
     width: 60px;
     text-align: center;
     font-size: 0.9rem;
+    white-space: nowrap;
 }
 
 .child-name {
     width: 60px;
     text-align: left;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .contact-buttons {
